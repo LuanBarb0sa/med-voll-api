@@ -22,6 +22,9 @@ public class Paciente {
 		this.cpf = dados.cpf();
 		this.endereco = new Endereco(dados.endereco());
 	}
+	
+	public Paciente() {
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
