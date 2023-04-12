@@ -47,6 +47,8 @@ public class Paciente {
 	
 	@Embedded
 	private Endereco endereco;
+	
+	private Boolean ativo;
 
 	public void atualizarInformacoes(@Valid DadosAtualizacaoPaciente dados) {
 		this.nome = dados.nome() != null ? dados.nome() : this.nome;
@@ -54,6 +56,10 @@ public class Paciente {
 		if (dados.endereco() != null) {
 			this.endereco.atualizarInformacoes(dados.endereco());
 		}
+	}
+
+	public void desativar() {
+		this.ativo = false;
 	}
 	
 }
