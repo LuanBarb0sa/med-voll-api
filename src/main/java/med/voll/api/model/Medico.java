@@ -9,7 +9,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.Data;
+import med.voll.api.dto.DadosAtualizacaoMedico;
 import med.voll.api.dto.DadosCadastroMedico;
 import med.voll.api.enums.Especialidade;
 
@@ -19,6 +21,7 @@ import med.voll.api.enums.Especialidade;
 public class Medico {
 
 	public Medico(DadosCadastroMedico dados) {
+		this.ativo = true;
 		this.nome = dados.nome();
 		this.email = dados.email();
 		this.crm = dados.crm();
@@ -53,5 +56,19 @@ public class Medico {
 
 	@Embedded
 	private Endereco endereco;
+	
+	private Boolean ativo;
+
+	public void atualizarInformacoes(@Valid DadosAtualizacaoMedico dados) {
+		this.nome = dados.nome() != null ? dados.nome() : this.nome;
+		this.telefone = dados.telefone() != null ? dados.telefone() : this.telefone;
+		if (dados.endereco() != null) {
+			this.endereco.atualizarInformacoes(dados.endereco());
+		}
+	}
+	
+	public void inativar() {
+		this.ativo = false;
+	}
 
 }

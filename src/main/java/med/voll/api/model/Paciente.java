@@ -7,7 +7,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.Data;
+import med.voll.api.dto.DadosAtualizacaoPaciente;
 import med.voll.api.dto.DadosCadastroPaciente;
 
 @Data
@@ -29,7 +31,7 @@ public class Paciente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private long id;
 
 	@Column(name = "nome")
 	private String nome;
@@ -45,5 +47,13 @@ public class Paciente {
 	
 	@Embedded
 	private Endereco endereco;
+
+	public void atualizarInformacoes(@Valid DadosAtualizacaoPaciente dados) {
+		this.nome = dados.nome() != null ? dados.nome() : this.nome;
+		this.telefone = dados.telefone() != null ? dados.telefone() : this.telefone;
+		if (dados.endereco() != null) {
+			this.endereco.atualizarInformacoes(dados.endereco());
+		}
+	}
 	
 }

@@ -35,4 +35,14 @@ public class Endereco {
 
 	private String uf;
 
+	public void atualizarInformacoes(DadosEndereco endereco) {
+		this.logradouro = endereco.logradouro() != null ? endereco.logradouro() : this.logradouro;
+		this.bairro = endereco.bairro() != null ? endereco.bairro() : this.bairro;
+		this.cep = endereco.cep() != null ? endereco.cep() : this.cep;
+		this.numero = endereco.numero() != null ? endereco.numero() : this.numero;
+		this.complemento = endereco.complemento() != null ? endereco.complemento() : this.complemento;
+		this.cidade = endereco.cidade() != null ? endereco.complemento() : this.complemento;
+		this.uf = endereco.uf() != null ? endereco.uf() : this.uf;
+	}
+
 }
