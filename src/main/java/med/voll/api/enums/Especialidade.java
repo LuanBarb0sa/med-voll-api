@@ -2,5 +2,5 @@ package med.voll.api.enums;
 
 public enum Especialidade {
 
-	ORTOPEDIA, CARDIOLOGIA, GINECOLOGIA, DEMATOLOGIA;
+	ORTOPEDIA, CARDIOLOGIA, GINECOLOGIA, DERMATOLOGIA;
 }
