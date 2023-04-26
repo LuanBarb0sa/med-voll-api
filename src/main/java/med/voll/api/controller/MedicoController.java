@@ -73,4 +73,11 @@ public class MedicoController {
 		
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity buscarPorID(@PathVariable Long id) {
+		var medico = repository.findById(id).map(DadosDetalhamentoMedico::new);
+		
+		return ResponseEntity.ok(medico);
+	}
+	
 }
